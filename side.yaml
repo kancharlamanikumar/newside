@@ -103,3 +103,5 @@ spec:
 #          value: zookeeper-cluster:2181
         - name: ALLOW_PLAINTEXT_LISTENER
           value: "yes" 
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: PLAINTEXT://10.158.0.7:9092,PLAINTEXT://10.158.0.7:9093,PLAINTEXT://10.158.0.7:9094
