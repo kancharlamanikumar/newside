@@ -1,16 +1,3 @@
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kafka-cluster
-spec:
-  selector:
-    app: kafka-cluster
-  ports:
-  - port: 9092
-    targetPort: 9092
-  type: LoadBalancer
----
 apiVersion: apps/v1
 kind: StatefulSet
 #kind: Deployment
@@ -48,3 +35,11 @@ spec:
           value: "yes" 
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes" 
+        - name: KAFKA_CFG_LISTENERS
+          value: LISTENER_PUBLIC://34.170.117.132:32742,LISTENER_INTERNAL://10.8.9.53:9092
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: LISTENER_PUBLIC://34.170.117.132:32742,LISTENER_INTERNAL://10.8.9.53:9092  
+        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+          value: LISTENER_PUBLIC:PLAINTEXT,LISTENER_INTERNAL:PLAINTEXT 
+        - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
+          value: LISTENER_PUBLIC
