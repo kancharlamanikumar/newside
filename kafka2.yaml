@@ -34,4 +34,4 @@ spec:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
        # - name: KAFKA_CFG_ADVERTISED_LISTENERS
-        #  value: PLAINTEXT://crs-kafka-1.kafka-cluster.default.svc.cluster.local:9093
+        #  value: PLAINTEXT://crs-kafka2-0.kafka-cluster.default.svc.cluster.local:9094
