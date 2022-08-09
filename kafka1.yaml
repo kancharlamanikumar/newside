@@ -34,4 +34,4 @@ spec:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://10.88.0.14:9092
+          value: PLAINTEXT://10.88.0.17:9092
