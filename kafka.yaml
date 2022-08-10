@@ -50,4 +50,4 @@ spec:
         - name: KAFKA_CFG_LISTENERS
           value: PLAINTEXT://0.0.0.0:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://kafka-0.kafka-cluster.default.svc.cluster.local:9092
+          value: PLAINTEXT://crs-kafka-0.kafka-cluster.default.svc.cluster.local:9092
