@@ -50,4 +50,4 @@ spec:
         - name: KAFKA_CFG_LISTENERS
           value: PLAINTEXT://0.0.0.0:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://10.36.2.11:9092
+          value: PLAINTEXT://10.36.2.13:9092
