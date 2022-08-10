@@ -28,7 +28,7 @@ spec:
         readinessProbe:
           exec:
             command:
-            - ps -ef | grep kafka
+            - ls
           initialDelaySeconds: 20
           timeoutSeconds: 20
           periodSeconds: 5
@@ -50,4 +50,4 @@ spec:
         - name: KAFKA_CFG_LISTENERS
           value: PLAINTEXT://0.0.0.0:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://10.36.2.17:9092
+          value: PLAINTEXT://10.36.2.21:9092
