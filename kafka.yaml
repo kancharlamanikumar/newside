@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
+#kind: StatefulSet
 metadata:
   name: crs-kafka
 spec:
   replicas: 1
-  serviceName: kafka-cluster
+ # serviceName: kafka-cluster
   selector:
     matchLabels:
         app: kafka-cluster
@@ -44,6 +45,8 @@ spec:
           timeoutSeconds: 20
           periodSeconds: 5
         env:
+        #- name: KAFKA_KRAFT_CLUSTER_ID
+         # value: "0" 
         - name: KAFKA_CFG_ZOOKEEPER_CONNECT
           value: crs-zookeeper-0.zookeeper-cluster.default.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-cluster.default.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-cluster.default.svc.cluster.local:2181
 #          value: zookeeper-cluster:2181
@@ -54,5 +57,5 @@ spec:
         - name: KAFKA_CFG_LISTENERS
           value: PLAINTEXT://0.0.0.0:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://kafka-0.kafka-cluster.default.svc.cluster.local:9092
+          value: PLAINTEXT://10.36.2.27:9092
  
