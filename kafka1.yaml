@@ -25,6 +25,20 @@ spec:
             cpu: "0.2"             
         ports:
          - containerPort: 9092
+        readinessProbe:
+          exec:
+            command:
+            - ps -ef | grep kafka
+          initialDelaySeconds: 20
+          timeoutSeconds: 20
+          periodSeconds: 5
+        livenessProbe:
+          exec:
+            command:
+            - ps -ef | grep kafka
+          initialDelaySeconds: 20
+          timeoutSeconds: 20
+          periodSeconds: 5
         env:
         - name: KAFKA_CFG_ZOOKEEPER_CONNECT
           value: crs-zookeeper-0.zookeeper-cluster.default.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-cluster.default.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-cluster.default.svc.cluster.local:2181
