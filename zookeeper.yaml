@@ -54,6 +54,20 @@ spec:
         - containerPort: 2181
         - containerPort: 2888
         - containerPort: 3888
+        readinessProbe:
+          exec:
+            command:
+            - /opt/bitnami/zookeeper/bin/zkCli.sh
+          initialDelaySeconds: 20
+          timeoutSeconds: 20
+          periodSeconds: 5
+        livenessProbe:
+          exec:
+            command:
+            - /opt/bitnami/zookeeper/bin/zkCli.sh
+          initialDelaySeconds: 20
+          timeoutSeconds: 20
+          periodSeconds: 5
         lifecycle:
           postStart:
             exec:
@@ -67,14 +81,5 @@ spec:
           value: "yes"
         - name: ZOO_SERVERS
           value:  crs-zookeeper-0.zookeeper-cluster.default.svc.cluster.local:2888:3888,crs-zookeeper-1.zookeeper-cluster.default.svc.cluster.local:2888:3888,crs-zookeeper-2.zookeeper-cluster.default.svc.cluster.local:2888:3888
-        - name: KAFKA_CFG_LISTENERS
-          value: LISTENER_PUBLIC://34.170.117.132:32742,LISTENER_INTERNAL://10.8.9.53:9092
-        - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: LISTENER_PUBLIC://34.170.117.132:32742,LISTENER_INTERNAL://10.8.9.53:9092  
-        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-          value: LISTENER_PUBLIC:PLAINTEXT,LISTENER_INTERNAL:PLAINTEXT 
-        - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
-          value: LISTENER_PUBLIC
- 
-
+       
         
