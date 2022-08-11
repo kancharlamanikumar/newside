@@ -33,6 +33,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: crs-zookeeper
+  namespace: kafka
 spec:
   replicas: 3
   serviceName: zookeeper-cluster
