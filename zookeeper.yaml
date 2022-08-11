@@ -79,11 +79,11 @@ spec:
                 - "sh"
                 - "-c"
                 - >
-                  echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($4)}' | awk '{split($0,array,"-")} END{print array[4]}') + 1 )) > /bitnami/zookeeper/data/myid
+                  echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($3)}' | awk '{split($0,array,"-")} END{print array[3]}') + 1 )) > /bitnami/zookeeper/data/myid
         env:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
         - name: ZOO_SERVERS
-          value:  crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:2888:3888
+          value:  crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888
        
         
