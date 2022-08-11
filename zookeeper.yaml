@@ -83,7 +83,10 @@ spec:
         env:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
+        - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
         - name: ZOO_SERVERS
-          value:  crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-*-*.zookeeper-cluster.kafka.svc.cluster.local:2888:3888
-       
+          value: $(MY_POD_IP):2888:3888
         
