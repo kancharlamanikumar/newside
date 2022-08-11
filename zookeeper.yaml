@@ -32,7 +32,8 @@ spec:
   type: LoadBalancer
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
+#kind: StatefulSet
 metadata:
   name: crs-zookeeper
   namespace: kafka
