@@ -5,6 +5,7 @@ metadata:
   namespace: kafka
 spec:
   replicas: 3
+  serviceName: zookeeper-cluster
   selector:
     matchLabels:
       app: zookeeper-cluster
