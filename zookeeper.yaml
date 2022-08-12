@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: crs-zookeeper
   namespace: kafka
@@ -48,4 +48,17 @@ spec:
         env:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
-        
+        - name: ZOO_SERVERS
+          value:  crs-zookeeper-0.zookeeper-cluster.default.svc.cluster.local:2888:3888,crs-zookeeper-1.zookeeper-cluster.default.svc.cluster.local:2888:3888,crs-zookeeper-2.zookeeper-cluster.default.svc.cluster.local:2888:3888
+        volumeMounts:
+        - name: zookeeper-mount
+          mountPath: /bitnami/zookeeper
+  volumeClaimTemplates:
+  - metadata:
+      name: zookeeper-mount
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      #storageClassName: "kafka-storage"
+      resources:
+        requests:
+          storage: 50Gi
