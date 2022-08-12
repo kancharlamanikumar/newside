@@ -28,7 +28,7 @@ spec:
          - containerPort: 9092
         env:
         - name: KAFKA_CFG_ZOOKEEPER_CONNECT
-          value: crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:218
+          value: crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:2181
         - name: ALLOW_PLAINTEXT_LISTENER
           value: "yes" 
         - name: ALLOW_ANONYMOUS_LOGIN
