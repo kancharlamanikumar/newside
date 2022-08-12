@@ -50,6 +50,7 @@ spec:
         env:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
+        
     #    - name: MY_POD_IP
      #     valueFrom:
       #      fieldRef:
