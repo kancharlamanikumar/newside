@@ -53,5 +53,5 @@ spec:
             fieldRef:
               fieldPath: status.podIP
         - name: ZOO_SERVERS
-          value: $(MY_POD_IP):2888:3888,$(MY_POD_IP):2888:3888,$(MY_POD_IP):2888:3888
+          value: $1(MY_POD_IP):2888:3888,$2(MY_POD_IP):2888:3888,$3(MY_POD_IP):2888:3888
         
