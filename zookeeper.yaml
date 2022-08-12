@@ -1,10 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+#kind: Deployment
+kind: statefulset
 metadata:
   name: crs-zookeeper
   namespace: kafka
 spec:
   replicas: 3
+  serviceName: zookeeper-cluster
   selector:
     matchLabels:
       app: zookeeper-cluster
@@ -48,10 +50,10 @@ spec:
         env:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
-        - name: MY_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: ZOO_SERVERS
-          value: $1(MY_POD_IP):2888:3888,$2(MY_POD_IP):2888:3888,$3(MY_POD_IP):2888:3888
+    #    - name: MY_POD_IP
+     #     valueFrom:
+      #      fieldRef:
+       #       fieldPath: status.podIP
+       # - name: ZOO_SERVERS
+        #  value: (MY_POD_IP):2888:3888,(MY_POD_IP):2888:3888,(MY_POD_IP):2888:3888
         
