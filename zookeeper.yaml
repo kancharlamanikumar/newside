@@ -32,6 +32,7 @@ spec:
                 - "-c"
                 - >
                   echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($3)}' | awk '{split($0,array,"-")} END{print array[3]}') + 1 )) > /bitnami/zookeeper/data/myid
+                  
         readinessProbe:
           exec:
             command:
@@ -59,7 +60,6 @@ spec:
       name: zookeeper-mount
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      #storageClassName: "kafka-storage"
       resources:
         requests:
           storage: 50Gi
