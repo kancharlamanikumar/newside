@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: crs-kafka1
+  namespace: kafka
 spec:
   replicas: 1
   serviceName: kafka-cluster
