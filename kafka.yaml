@@ -49,10 +49,6 @@ spec:
           value: crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2181,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:2181
         - name: ALLOW_PLAINTEXT_LISTENER
           value: "yes" 
-        - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
-          value: LISTENER_PUBLIC
-        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-          value: LISTENER_PUBLIC:PLAINTEXT,LISTENER_INTERNAL:PLAINTEXT
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
         - name: MY_POD_IP
@@ -60,13 +56,9 @@ spec:
             fieldRef:
               fieldPath: status.podIP
         - name: KAFKA_CFG_LISTENERS
-          value: LISTENER_PUBLIC://34.95.35.250:30422,LISTENER_INTERNAL://0.0.0.0:9092
+          value: PLAINTEXT://0.0.0.0:9092
         - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: LISTENER_PUBLIC://34.95.35.250:30422,LISTENER_INTERNAL://$(MY_POD_IP):9092
-   #     - name: KAFKA_CFG_LISTENERS
-    #      value: PLAINTEXT://0.0.0.0:9092
-     #   - name: KAFKA_CFG_ADVERTISED_LISTENERS
-      #    value: PLAINTEXT://$(MY_POD_IP):9092
+          value: PLAINTEXT://$(MY_POD_IP):9092
         volumeMounts:
         - name: kafka-mount
           mountPath: /bitnami/kafka
