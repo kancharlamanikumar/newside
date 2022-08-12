@@ -61,7 +61,7 @@ spec:
           value: PLAINTEXT://$(MY_POD_IP):9092
         volumeMounts:
         - name: kafka-mount
-          mountPath: /bitnami/zookeeper
+          mountPath: /bitnami/kafka
   volumeClaimTemplates:
   - metadata:
       name: kafka-mount
