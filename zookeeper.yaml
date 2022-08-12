@@ -24,6 +24,17 @@ spec:
         - containerPort: 2181
         - containerPort: 2888
         - containerPort: 3888
+        volumeMounts:
+        - name: zookeeper-mount
+          mountPath: /bitnami/zookeeper
+  volumeClaimTemplates:
+  - metadata:
+      name: zookeeper-mount
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 50Gi
         lifecycle:
           postStart:
             exec:
@@ -31,8 +42,7 @@ spec:
                 - "sh"
                 - "-c"
                 - >
-                  echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($3)}' | awk '{split($0,array,"-")} END{print array[3]}') + 1 )) > /bitnami/zookeeper/data/myid
-                  
+                  echo $(( $(cat /etc/hosts | grep zookeeper | awk '{print($3)}' | awk '{split($0,array,"-")} END{print array[3]}') + 1 )) > /bitnami/zookeeper/data/myid          
         readinessProbe:
           exec:
             command:
@@ -51,15 +61,5 @@ spec:
         - name: ALLOW_ANONYMOUS_LOGIN
           value: "yes"
         - name: ZOO_SERVERS
-          value:  crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:2888:3888
-        volumeMounts:
-        - name: zookeeper-mount
-          mountPath: /bitnami/zookeeper
-  volumeClaimTemplates:
-  - metadata:
-      name: zookeeper-mount
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 50Gi
+          value: crs-zookeeper-0.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-1.zookeeper-cluster.kafka.svc.cluster.local:2888:3888,crs-zookeeper-2.zookeeper-cluster.kafka.svc.cluster.local:2888:3888
+        
